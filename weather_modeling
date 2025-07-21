@@ -1,0 +1,34 @@
+# Define the function first
+def Temperature_modeling(a, b, c, time):
+  return a * time ** 2 + b + time + c
+
+# Hardcoded variables
+a = 4
+b = 5
+C = 3
+time = 2
+temp = Temperature_modeling(a, b, C, time)
+print(f"The Temperature at time {time} is {temp}")
+
+# Version 2 : Keyboard Input:
+temp = Temperature_modeling(float(input('Enter a:')),float(input('Enter b:')),float(input('Enter c:')),int(input("Enter Time:")))
+print(f"the Temperature at time {time} is {temp}")
+
+# Version 3: Read from Single-Line File
+with open("sheet_Single.txt", "w") as f:
+  f.write("2.5 3.0 1.5 4")
+with open("sheet_Single.txt", "r") as f:
+  a, b, c, time = map(float, f.readline().split())
+  time = int(time)
+  temp = Temperature_modeling(a, b, c, time)
+  print(f"The Temp at time {time} is {temp}")
+
+# Version 4: Read from Multi-Line File
+with open("sheet_Multiple.txt", "w") as f:
+  f.write("1 2 3 1\n2 3 1 2\n")
+print("The Temperatures from file:")
+for line in open("sheet_Multiple.txt"):
+  a, b, c, time = map(float, line.split())
+  time = int(time)
+  temp = Temperature_modeling(a, b, c, time)
+  print(f" Time {time} + Temp = {temp}")
